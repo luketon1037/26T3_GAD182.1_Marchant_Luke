@@ -1,33 +1,24 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickDestroy : MonoBehaviour
+public class ClickDestroy : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void OnMouseDown()
-    {
-        Destroy(gameObject);
-    }
+    [SerializeField] private int scoreValue = 100;
 
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        // 0 = Left Click, 1 = Right Click, 2 = Middle Click
-        if (Input.GetMouseButtonDown(0))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (ScoreSystem.Instance != null)
             {
-                GameObject clickedObject = hit.collider.gameObject;
-                Debug.Log($"Raycast hit 3D object: {clickedObject.name}");
-
-                // Optional: Check if it has a specific tag or component
-                if (clickedObject.CompareTag("Interactable"))
-                {
-                    Destroy(gameObject);
-                }
+                ScoreSystem.Instance.AddScore(scoreValue);
             }
+            else
+            {
+                Debug.LogWarning("ScoreManager instance missing in the scene!");
+            }
+
+            Destroy(gameObject);
         }
     }
 }

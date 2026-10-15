@@ -6,7 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 /// <summary>
 /// Will hold a list of all the cars that exist in the race
 /// </summary>
-public class CarSpawner : MonoBehaviour
+public class CardSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject prefabToSpawn;
     [SerializeField] private RectTransform canvasParent;  // The Canvas Panel transform
@@ -22,7 +22,7 @@ public class CarSpawner : MonoBehaviour
         while (true)
         {
             Spawn();
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.3f);
         }
     }
 
