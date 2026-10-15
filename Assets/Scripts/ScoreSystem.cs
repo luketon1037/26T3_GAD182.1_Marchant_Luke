@@ -14,11 +14,6 @@ public class ScoreSystem : MonoBehaviour
         {
             Instance = this;
             UpdateScoreDisplay();
-
-            if (scoreText == null)
-            {
-                Debug.LogWarning("Score text is not assigned in the ScoreSystem Inspector.", this);
-            }
         }
         else
         {
