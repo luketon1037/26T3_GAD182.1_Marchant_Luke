@@ -24,7 +24,6 @@ public class ScoreSystem : MonoBehaviour
     public void AddScore(int amount)
     {
         totalScore += amount;
-        Debug.Log("Score Increased! Total Score: " + totalScore);
         UpdateScoreDisplay();
     }
 
